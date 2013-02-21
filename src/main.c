@@ -47,6 +47,8 @@ float ball_velocity_x;
 float ball_velocity_y;
 int key_up_rel = 0;
 
+int max_thrust = 280;
+
 struct _projectiles _ptls[MAX_PROJECTILES];
 struct _astroids astr[MAX_ASTROIDS];
 
@@ -135,13 +137,13 @@ void game_tick(double delta_time)
 		game_is_running = 0;
 	if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
 		if (event.keyboard.keycode == ALLEGRO_KEY_UP || event.keyboard.keycode == ALLEGRO_KEY_W)
-			ball_velocity_y -= 280;
+			ball_velocity_y -= max_thrust;
 		if (event.keyboard.keycode == ALLEGRO_KEY_DOWN || event.keyboard.keycode == ALLEGRO_KEY_S)
-			ball_velocity_y += 280;
+			ball_velocity_y += max_thrust;
 		if (event.keyboard.keycode == ALLEGRO_KEY_LEFT || event.keyboard.keycode == ALLEGRO_KEY_A)
-			ball_velocity_x -= 280;
+			ball_velocity_x -= max_thrust;
 		if (event.keyboard.keycode == ALLEGRO_KEY_RIGHT || event.keyboard.keycode == ALLEGRO_KEY_D)
-			ball_velocity_x += 280;
+			ball_velocity_x += max_thrust;
 		if (event.keyboard.keycode == ALLEGRO_KEY_SPACE){
 			_time_wait++;
 			for (i=0; i<MAX_PROJECTILES; i++){
